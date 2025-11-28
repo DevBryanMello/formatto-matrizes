@@ -1,0 +1,633 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+:root {
+    --primary-font-family: "Montserrat", sans-serif;
+    --secundary-font-family: "Oswald", sans-serif;
+    --primary-color: #f7f5ee;
+    --secundary-color: #212121;
+    --cinza-claro: #f5f5f5;
+    --cinza-medio: #9e9e9e;
+    --ciano-escuro: #00A896; 
+}
+
+body {
+    background-color: var(--primary-color);
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.logo a {
+    font-family: 'Calistoga';
+    font-size: 36px;
+    color: #FFF;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 200px;
+}
+
+/* HEADER */
+header {
+    background-color: #fff;
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header nav li {
+    margin: 0 30px;
+}
+
+header nav li a {
+    font-family: var(--secundary-font-family);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--secundary-color);
+    text-decoration: none;
+    transition: ease-in-out .2s;
+}
+
+header nav li a:hover {
+    color: var(--ciano-escuro);
+}
+
+/* MENU MOBILE*/
+.menu-mobile {
+    display: none;
+}
+
+.menu-icon {
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.menu-icon div {
+    width: 100%;
+    height: 3px;
+    background-color: var(--texto-icon-color); /* Cor preta para o hambúrguer */
+    transition: all 0.3s;
+    transform-origin: left; /* Ponto de rotação para o 'X' */
+}
+
+/* Efeito 'X' quando o menu está aberto (Classe 'active' adicionada pelo JS) */
+.menu-icon.active .bar1 {
+    transform: rotate(45deg);
+}
+
+.menu-icon.active .bar2 {
+    opacity: 0; /* Some com a barra do meio */
+}
+
+.menu-icon.active .bar3 {
+    transform: rotate(-45deg);
+}
+
+
+/* Estilo da Lista de Links (UL) */
+.menu-mobile ul {
+    position: absolute;
+    top: 128px;
+    right: 0px;
+    display: none; 
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 10px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Aumentei a opacidade para melhor leitura */
+    z-index: 99; /* Fica abaixo do ícone */
+}
+
+/* Estado ABERTO: Quando a classe 'active' é adicionada pelo JS */
+.menu-mobile ul.active {
+    display: flex; 
+}
+
+/* Estilo dos Links */
+.menu-mobile li {
+    list-style: none; /* Remove bolinha padrão da lista */
+    text-align: center;
+}
+
+.menu-mobile li a{
+    display: block;
+    padding: 10px 20px;
+    color: var(--primary-color);
+    transition: ease-in-out .3s;
+}
+
+.menu-mobile li a:hover {
+    color: var(--ciano-escuro);
+}
+header .menu-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+header .menu-icon div {
+    height: 6px;
+    background-color: var(--secundary-color);
+}
+
+/* Container Principal (mantém o max-width para o layout geral do carrossel) */
+.carousel-container {
+    max-width: 100%; /* Alterado para ocupar toda a largura da tela */
+    position: relative;
+    margin: auto;
+    overflow: hidden; 
+}
+
+/* Slides Individuais (mantido como está, apenas um contêiner) */
+.carousel-slide {
+    display: none; 
+}
+
+/* === MODIFICAÇÃO AQUI: AJUSTE DA IMAGEM === */
+.carousel-slide img {
+    width: 100%;         /* Garante que a imagem ocupe 100% da largura do contêiner */
+    height: 500px;       /* Define a altura fixa desejada */
+    object-fit: cover;   /* Essa propriedade é a chave: 
+                            - 'cover' faz com que a imagem cubra todo o espaço, 
+                              cortando as bordas se necessário para manter a proporção.
+                            - Isso evita distorção e garante que a altura seja respeitada. */
+    object-position: center; /* Centraliza a imagem dentro do contêiner, tanto horizontal quanto verticalmente */
+}
+
+/* Estilo dos Botões de Navegação (Setas) - Mantido */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+    text-decoration: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Indicadores de Ponto (Dots) - Mantido */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+/* Estilo para o dot ativo - Mantido */
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Animação de Fade - Mantido */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.quem-somos {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.titulo-quem_somos {
+    text-align: center;
+    font-size: 32px;
+    font-family: var(--primary-font-family);
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--ciano-escuro);
+}
+
+/* BOX DE CHAMADAS */
+.box-chamadas {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.chamadas {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.icon-chamada {
+    width: 100px;
+    height: 100px;
+    background-color: var(--ciano-escuro);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-chamada svg {
+    fill: var(--cinza-claro);
+}
+
+.titulo-chamada {
+    font-family: var(--secundary-font-family);
+    font-weight: 600;
+    font-size: 26px;
+}
+
+.desc-chamada {
+    font-size: 18px;
+    font-family: var(--primary-font-family);
+    text-align: center;
+    color: #3a3a3a;
+}
+
+/* SECTION DE MATRIZES */
+#matrizes {
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    background-color: #fff
+}
+
+.box-matrizes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 150px;
+}
+
+.infos-matrizes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+}
+
+.img-matrizes img {
+    width: 540px;
+    height: 380px;
+    border-radius: 15px;
+}
+
+.titulo-matrizes {
+    font-family: var(--secundary-font-family);
+    font-size: 40px;
+}
+
+.desc-matrizes {
+    font-family: var(--primary-font-family);
+    font-size: 20px;
+    text-align: start;
+}
+
+.botao-matrizes {
+    width: 180px;
+    height: 45px;
+    background-color: #00A896;
+    border-radius: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 5px;
+    font-family: var(--secundary-font-family);
+    transition: ease-in-out .2s;
+}
+
+.botao-matrizes:hover {
+    box-shadow: 0px 0px 8px #9e9e9e;
+}
+
+/* SECTION LOCALIZAÇÃO */
+#localizacao {
+    margin-top: 40px;
+}
+
+.titulo-localizacao {
+    font-size: 32px;
+    font-family: var(--secundary-font-family);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* SECTION DE CONTATO */
+#contato {
+    width: 100%;
+    padding: 80px 0px;
+    background: linear-gradient(
+        rgba(0, 168, 150, 0.8), 
+        rgba(0, 168, 150, 0.8)  
+    ), url('../images/testeimg.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contato .container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.box-endereco, .box-contato {
+    width: 50%;
+}
+.endereco {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.texto-end a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    color: var(--primary-color);
+    font-family: var(--primary-font-family);
+    margin-left: 10px;
+}
+
+.contatos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.telefone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.number-telefone {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: var(--primary-font-family);
+    color: var(--primary-color);
+}
+
+.whatsapp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.number-whats a {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: var(--primary-font-family);
+    color: var(--primary-color);
+}
+
+.email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-email a {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: var(--primary-font-family);
+    color: var(--primary-color);
+}
+
+footer {
+    width: 100%;
+    height: 35px;
+    background-color: var(--secundary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-footer a{
+    color: var(--primary-color);
+    font-family: var(--primary-font-family);
+    text-decoration: none;
+}
+
+.text-footer a:hover {
+    text-decoration: underline;
+}
+
+.whatsapp-fluton {
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background-color: #25d366;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:1024px) {
+    #contato .container {
+        flex-direction: column;
+    }
+    .box-contato,.box-endereco {
+        width: 100%;
+    }
+    .box-endereco {
+        margin-bottom: 10px;
+    }
+    .img-matrizes img {
+        width: 350px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width:850px) {
+    .menu-mobile {
+        display: flex;
+        margin-right: 30px;
+    }
+    #quem-somos {
+        flex-direction: column;
+        align-items: center;
+    }
+    .box-chamadas {
+        gap: 35px;
+        flex-direction: column;
+        padding: 0px 20px;
+    }
+    .chamadas {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .box-matrizes {
+        gap: 40px;
+        padding: 0px 20px;
+    }
+    .infos-matrizes {
+        gap: 20px;
+    }
+    .titulo-matrizes {
+        font-size: 28px;
+    }
+    .desc-matrizes {
+        font-size: 18px;
+        width: 100%;
+    }
+    #contato {
+        padding: 80px 20px;
+    }
+    .menu {
+        display: none;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .titulo-quem_somos {
+        font-size: 28px;
+    }
+    .box-chamadas {
+        gap: 35px;
+    }
+    .desc-chamada {
+        max-width:80%;
+    }
+    .titulo-chamada {
+        font-size: 26px;
+    }
+    .box-matrizes {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0px 20px;
+    }
+    .img-matrizes img {
+        width: 250px;
+        height: 200px;
+    }
+    .infos-matrizes {
+        gap: 10px;
+    }
+    .titulo-matrizes {
+        font-size: 28px;
+    }
+    .desc-matrizes {
+        font-size: 18px;
+        width: 80%;
+        text-align: center;
+    }
+     .texto-end a, .text-email a, .number-telefone, .number-whats a{
+        font-size: 18px;
+    }
+} 
+
+@media screen and (max-width:560px) {
+    .text-footer {
+        font-size: 16px;
+        text-align: center;
+    }
+    .icon-end, .icon-email, .icon-whats, .icon-telefone {
+        display: none;
+    }
+    .texto-end a, .text-email a, .number-telefone, .number-whats a{
+        font-size: 16px;
+        margin: 0;
+    }
+    .titulo-quem_somos, .titulo-chamada,.titulo-localizacao,.titulo-matrizes {
+        font-size: 22px;
+    }
+    header {
+        display: flex;
+        align-items: center;
+    }
+    .logo img {
+        margin-left: 10px;
+        width:150px;
+    }
+    .desc-matrizes {
+        width: 100%;
+    }
+    .desc-chamada {
+        width: 90%;
+    }
+    .menu-mobile ul {
+        top: 98px;
+    }
+    footer {
+        padding: 30px 0px;
+    }
+}
