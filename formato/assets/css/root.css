@@ -521,6 +521,9 @@ footer {
         width: 350px;
         height: 250px;
     }
+    .icon-email, .icon-end,.icon-telefone, .icon-whats {
+        margin-left: 20px;
+    }
 }
 
 @media screen and (max-width:850px) {
@@ -596,8 +599,14 @@ footer {
         width: 80%;
         text-align: center;
     }
+    .icon-email, .icon-end,.icon-telefone, .icon-whats {
+        margin-left: 0;
+    }
      .texto-end a, .text-email a, .number-telefone, .number-whats a{
         font-size: 18px;
+    }
+    #contato .container {
+        margin-left: 20px;
     }
 } 
 
@@ -606,12 +615,24 @@ footer {
         font-size: 16px;
         text-align: center;
     }
-    .icon-end, .icon-email, .icon-whats, .icon-telefone {
-        display: none;
+    .text-email {
+        overflow-wrap: break-word;
+        word-break: break-all;
+    }
+    #contato .container {
+        padding: 0;
+        margin: 0;
+    }
+    .icon-end svg, .icon-email svg, .icon-whats svg, .icon-telefone svg {
+        width: 28px;
+        margin-right: 10px;
     }
     .texto-end a, .text-email a, .number-telefone, .number-whats a{
         font-size: 16px;
         margin: 0;
+    }
+    .texto-end a{
+        line-height: 5px;
     }
     .titulo-quem_somos, .titulo-chamada,.titulo-localizacao,.titulo-matrizes {
         font-size: 26px;
