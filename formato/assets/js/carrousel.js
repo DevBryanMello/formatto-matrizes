@@ -67,6 +67,6 @@ function showSlides(n) {
     slides[autoSlideIndex-1].style.display = "block";  
     dots[autoSlideIndex-1].className += " active";
     
-    // Roda a cada 3 segundos (3000 milissegundos)
-    setTimeout(autoShowSlides, 3000); 
+    // Roda a cada 4 segundos (4000 milissegundos)
+    setTimeout(autoShowSlides, 4000); 
     }
